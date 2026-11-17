@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel="stylesheet" href="/fontawesome-free-7.3.1-web/css/fontawesome.min.css">
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  </head>
+  <%- include ../partials/main_nav.ejs %>
+  <body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3 mx-auto text-center">
+                <h1> <%= title %> </h1>
+                <p>Under Construction</p>
+            </div>
+        </div>
+
+        <!-- Check if we have any event listings -->
+        <% if (eventListings.length > 0){ %>
+            <div class="row">
+                <!-- Looping here to create a card for each new listing from the database. -->
+                <% for (let index = 0; index < eventListings.length; index++) { %>
+                    <div class="col-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                        <div class="card bg-dark text-white h-100 mt-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h3><%= eventListings[index].eventName %></h3>
+                                    <h6><%= eventListings[index].eventStart %> to <%=eventListings[index].eventEnd%></h6>
+                                    <hr>
+                                </div>
+
+                                <div class="card-text fs-6">
+                                    <%= eventListings[index].eventDescription %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <!-- Otherwise, just display a default message for no events being hosted -->
+        <% } else { %>
+            <div class="row mt-3 lh-1">
+                <p> No events are currently available! </p>
+                <p> Maybe try again later? </p>
+            </div>
+        <% } %>
+    </div>
+
+  </body>
+  <%- include ../partials/footer.ejs %>
+</html>
