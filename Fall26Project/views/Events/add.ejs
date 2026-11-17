@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
     <link rel="stylesheet" href="/fontawesome-free-7.3.1-web/css/fontawesome.min.css">
@@ -10,8 +9,72 @@
   <%- include ../partials/main_nav.ejs %>
   <body>
 
-    <h1><%= title %></h1>
-    <p>Under Construction</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center mt-3">
+                <h1><%= title %></h1>
+                <p>Under Construction</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mx-auto w-50">
+                <form class="eventForm" method="post">
+                    <div class="form-group">
+                        <label for="nameField">Name of the Event</label>
+                        <input type="text" 
+                               class="form-control mt-2 mb-3" id="nameField"
+                               name="eName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventSelector">Type of Event</label>
+                        <select class="form-control custom-select mb-3" id="eventSelector" 
+                                name="eType" required>
+
+                            <option value="Sports and Recreation">Sports and Recreation</option>
+                            <option value="Business and Careers">Business and Careers</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Social">Social</option>
+                            <option value="Other">Other</option>
+
+                        </select> 
+                    </div>          
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="eventStartDateField">Start Date</label>
+                                <input type="date" 
+                                       class="form-control mt-2 mb-3" id="eventStartDateField"
+                                       name="eStartDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="eventEndDateField">End Date</label>
+                                <input type="date" 
+                                       class="form-control mt-2 mb-3" id="eventEndDateField"
+                                       name="eEndDate" required>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventDescriptionField">Description of the Event</label>
+                        <textarea type="text" 
+                                  class="form-control mt-2 mb-3" id="eventDescriptionField"
+                                  name="eDescription"></textarea>
+                    </div>  
+                    
+                    <button class="btn btn-dark mt-3" type="submit">Create</button>
+                    <a href="/events" class="btn btn-warning mt-3">Go Back!</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
 
   </body>
   <%- include ../partials/footer.ejs %>

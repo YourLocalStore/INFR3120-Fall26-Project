@@ -25,13 +25,13 @@ router.get('/events', async(req, res, next) => {
 router.get("/events/addevent", async(req, res, next) => {
     try{
         res.render("Events/add", {
-            title: "Add a Book"
+            title: "Add an Event"
         })
 
     } catch(err) {
         console.log(err)
         res.render("Events/add", {
-            title: "Edit Book",
+            title: "Error!",
             error: err
         })
     }
@@ -40,10 +40,11 @@ router.get("/events/addevent", async(req, res, next) => {
 router.post("/events/addevent", async(req, res, next) => {
     try{
         let newEvent = event({
-            "eventName":        "",
-            "eventStart":       "",
-            "eventEnd":         "",
-            "eventDescription": ""     
+            "eventName":        req.body.eName,
+            "eventType":        req.body.eType,
+            "eventStart":       req.body.eStartDate,
+            "eventEnd":         req.body.eEndDate,
+            "eventDescription": req.body.eDescription     
         })
         await event.create(newEvent) // Dependent on the newEvent, await
         res.redirect("/events")
