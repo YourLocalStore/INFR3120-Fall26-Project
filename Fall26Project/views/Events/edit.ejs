@@ -22,6 +22,8 @@
       <div class="row">
         <div class="col-12 mx-auto w-50">
           <form class="eventForm" method="post">
+
+            <!-- Event Name Form Field -->
             <div class="form-group">
               <label for="nameField">Name of the Event</label>
               <input type="text" 
@@ -29,13 +31,14 @@
                       name="eName" value="<%= event.eventName %>"
                       required>
             </div>
-
+            
+            <!-- Event Type Form Field -->
             <div class="form-group">
               <label for="eventSelector">Type of Event</label>
               <select class="form-control custom-select mb-3" id="eventSelector" 
                       name="eType" required>
-
-                <option hidden selected="<%= event.eventType %>"> <%= event.eventType %> </option>
+              
+                <option hidden selected="<%= event.eventType %>"> <%= event.eventType %> </option> 
                 <option value="Sports and Recreation">Sports and Recreation</option>
                 <option value="Business and Careers">Business and Careers</option>
                 <option value="Conference">Conference</option>
@@ -44,9 +47,15 @@
 
               </select>
             </div>          
-              
+            
+            <!-- 
+              Nest another row. By design, the start and end date fields shouldn't be as long as other fields,
+              so keep two of them within the same row instead of stacking them.
+            -->
             <div class="row">
               <div class="col-12 col-md-6">
+
+                <!-- Event Start Date Form Field -->
                 <div class="form-group">
                   <label for="eventStartDateField">Start Date</label>
                   <input type="date" 
@@ -56,8 +65,10 @@
                           required>
                 </div>
               </div>
-                
+              
               <div class="col-12 col-md-6">
+
+                <!-- Event End Date Form Field -->
                 <div class="form-group">
                   <label for="eventEndDateField">End Date</label>
                   <input type="date" 
@@ -68,7 +79,8 @@
                 </div> 
               </div>
             </div>
-              
+            
+            <!-- Event Description Form Field -->
             <div class="form-group">
               <label for="eventDescriptionField">Description of the Event</label>
               <textarea type="text" 

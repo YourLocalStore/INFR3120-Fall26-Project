@@ -7,10 +7,10 @@ let event = require("../models/event")
 // Read all listings from the DB
 router.get('/events', async(req, res, next) => {
     try{
-        const eventListings = await event.find();
-        res.render("Events/event_list", {
-            title: "Event List",
-            eventListings: eventListings
+        const eventListings = await event.find(); // Await, we are waiting for the Database to query events
+        res.render("Events/event_list", {         // Then, render the event_list.ejs file 
+            title: "Event List",                  // A title must be defined in EJS
+            eventListings: eventListings          // Must also pass our required data into the view template, i.e., eventListings 
         })
     } catch(err){
         console.log(err)
@@ -39,6 +39,10 @@ router.get("/events/addevent", async(req, res, next) => {
 
 router.post("/events/addevent", async(req, res, next) => {
     try{
+
+        // eName, eType, etc., are the names of the form field elements.
+        // They get passed into the parameters from the database schema once submitted.
+        // 'req.body' is the JSON data that gets passed from these elements.
         let newEvent = event({
             "eventName":        req.body.eName,
             "eventType":        req.body.eType,
@@ -46,8 +50,8 @@ router.post("/events/addevent", async(req, res, next) => {
             "eventEnd":         req.body.eEndDate,
             "eventDescription": req.body.eDescription     
         })
-        await event.create(newEvent) // Dependent on the newEvent, await
-        res.redirect("/events")
+        await event.create(newEvent) // Dependent on the newEvent, await for its completion
+        res.redirect("/events")      // Send user back to the events page after adding
 
     } catch(err) {
         console.log(err)
@@ -60,8 +64,10 @@ router.post("/events/addevent", async(req, res, next) => {
 // Edit
 router.get("/events/edit/:id", async(req, res, next) => {
     try{
-        const eventID = req.params.id
-        const eventToEdit = await event.findById(eventID)
+
+        // req.params requires ":id", which gets obtained from events_list.ejs
+        const eventID = req.params.id                       
+        const eventToEdit = await event.findById(eventID) 
         res.render("Events/edit", {
             title: "Edit an Event",
             event: eventToEdit
@@ -80,7 +86,6 @@ router.post("/events/edit/:id", async(req, res, next) => {
     try{
         let eventID = req.params.id
         let updatedEvent = event({
-            "_id":              eventID,
             "eventName":        req.body.eName,
             "eventType":        req.body.eType,
             "eventStart":       req.body.eStartDate,
