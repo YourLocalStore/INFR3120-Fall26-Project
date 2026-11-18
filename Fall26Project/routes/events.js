@@ -30,7 +30,7 @@ router.get("/events/addevent", async(req, res, next) => {
 
     } catch(err) {
         console.log(err)
-        res.render("Events/add", {
+        res.render("Events/addevent", {
             title: "Error!",
             error: err
         })
@@ -51,15 +51,69 @@ router.post("/events/addevent", async(req, res, next) => {
 
     } catch(err) {
         console.log(err)
-        res.render("Events/add", {
+        res.render("Events/addevent", {
             title: "Error!",
             error: err
         })
     }
 })
 // Edit
+router.get("/events/edit/:id", async(req, res, next) => {
+    try{
+        const eventID = req.params.id
+        const eventToEdit = await event.findById(eventID)
+        res.render("Events/edit", {
+            title: "Edit an Event",
+            event: eventToEdit
+        })
+
+    } catch(err) {
+        console.log(err)
+        res.render("Events/edit", {
+            title: "Error!",
+            error: err
+        })
+    }
+})
+
+router.post("/events/edit/:id", async(req, res, next) => {
+    try{
+        let eventID = req.params.id
+        let updatedEvent = event({
+            "_id":              eventID,
+            "eventName":        req.body.eName,
+            "eventType":        req.body.eType,
+            "eventStart":       req.body.eStartDate,
+            "eventEnd":         req.body.eEndDate,
+            "eventDescription": req.body.eDescription              
+        })
+        await event.findByIdAndUpdate(eventID, updatedEvent)
+        res.redirect("/events")
+
+    } catch(err) {
+        console.log(err)
+        res.render("Events/edit", {
+            title: "Error!",
+            error: err
+        })
+    }
+})
 
 // Delete
+router.get("/events/delete/:id", async(req, res, next) => {
+    try{
+        let eventID = req.params.id
+        await event.deleteOne({_id:eventID})
+        res.redirect("/events")
+
+    } catch(err) {
+        console.log(err)
+        res.render("Events/delete", {
+            title: "Error!",
+            error: err
+        })        
+    }
+})
 
 
 module.exports = router;
