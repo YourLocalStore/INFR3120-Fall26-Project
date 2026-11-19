@@ -1,18 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
-    <link rel="stylesheet" href="/fontawesome-free-7.3.1-web/css/fontawesome.min.css">
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-  </head>
-  <%- include ../partials/main_nav.ejs %>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+  <link rel="stylesheet" href="/fontawesome-free-7.3.1-web/css/all.css">
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<%- include ../partials/main_nav.ejs %>
+
   <body>
 
-    <div class="container-fluid mt-3">
-      <h1><%= title %></h1>
-      <p>Under Construction</p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 text-center mt-3 mb-4 p-5 bg-light rounded">
+          <h1>
+            <%= title %>
+          </h1>
+          <p class="fs-5">Find out what's happening around campus, or post your own event for everyone to see!</p>
+
+          <a href="/events" class="btn btn-dark mt-2">View Events</a>
+          <a href="/events/addevent" class="btn btn-warning mt-2">Create an Event</a>
+        </div>
+      </div>
+
+      <div class="row text-center">
+
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
+            <a href="/events" class="text-decoration-none text-black">
+              <div class="card-body">
+                <i class="fa-solid fa-calendar-days fa-2x mb-3"></i>
+                <h4 class="card-title">Browse Events</h4>
+                <p class="card-text">See a list of all the events that are coming up on campus.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
+            <a href="/events/addevent" class="text-decoration-none text-black">
+              <div class="card-body">
+                <i class="fa-solid fa-plus fa-2x mb-3"></i>
+                <h4 class="card-title">Create Events</h4>
+                <p class="card-text">Hosting something? Add it to the list so other students can find it.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
+            <a href="/events" class="text-decoration-none text-black">
+              <div class="card-body">
+                <i class="fa-solid fa-pen-to-square fa-2x mb-3"></i>
+                <h4 class="card-title">Edit or Remove</h4>
+                <p class="card-text">Made a mistake or the event got cancelled? You can update or delete it anytime.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12 col-md-8 mx-auto">
+          <h3 class="text-center">Types of Events</h3>
+          <ul class="list-group mt-3">
+            <li class="list-group-item">Sports and Recreation</li>
+            <li class="list-group-item">Business and Careers</li>
+            <li class="list-group-item">Conference</li>
+            <li class="list-group-item">Social</li>
+            <li class="list-group-item">Other</li>
+          </ul>
+        </div>
+      </div>
 
     </div>
 
