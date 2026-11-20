@@ -83,24 +83,26 @@ router.get("/events/edit/:id", async(req, res, next) => {
 })
 
 router.post("/events/edit/:id", async(req, res, next) => {
-    try{
-        let eventID = req.params.id
-        let updatedEvent = event({
+    try {
+        let eventID = req.params.id;
+
+        let updatedEvent = {
             "eventName":        req.body.eName,
             "eventType":        req.body.eType,
             "eventStart":       req.body.eStartDate,
             "eventEnd":         req.body.eEndDate,
-            "eventDescription": req.body.eDescription              
-        })
-        await event.findByIdAndUpdate(eventID, updatedEvent)
-        res.redirect("/events")
+            "eventDescription": req.body.eDescription
+        };
+
+        await event.findByIdAndUpdate(eventID, updatedEvent);
+        res.redirect("/events");
 
     } catch(err) {
-        console.log(err)
-        res.render("Events/edit", {
-            title: "Error!",
-            error: err
-        })
+        console.log(err);
+        next(err);
+    }
+});
+
     }
 })
 
