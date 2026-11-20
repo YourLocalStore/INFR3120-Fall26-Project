@@ -103,9 +103,6 @@ router.post("/events/edit/:id", async(req, res, next) => {
     }
 });
 
-    }
-})
-
 // Delete
 router.get("/events/delete/:id", async(req, res, next) => {
     try{
