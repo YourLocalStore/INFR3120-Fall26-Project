@@ -71,19 +71,6 @@
                                        required>
                             </div> 
                         </div>
-                        
-                        <!-- DOM loads top to bottom. Let the date fields load first before applying this script. -->
-                        <script>
-                            /* 
-                                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date 
-                                ** Note, .getMonth() is zero-indexed. This means January is 0 and December is 11.
-
-                                Selector field should look like: [Year]-[Month]-[Day]
-                            */
-                            const minDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
-                            document.getElementById("eventStartDateField").min = minDate
-                            document.getElementById("eventEndDateField").min   = minDate
-                        </script>  
 
                     </div>
                     
