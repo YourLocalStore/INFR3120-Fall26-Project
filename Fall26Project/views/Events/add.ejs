@@ -12,9 +12,9 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 text-center mt-3">
+            <div class="col-12 text-center mt-3 p-5 bg-light rounded">
                 <h1><%= title %></h1>
-                <p>Under Construction</p>
+                <p class="fs-5">Post your event for everyone to see!</p>
             </div>
         </div>
 
@@ -46,31 +46,45 @@
                     </div>         
 
                     <!-- 
-                    Nest another row. By design, the start and end date fields shouldn't be as long as other fields,
-                    so keep two of them within the same row instead of stacking them.
+                        Nest another row. By design, the start and end date fields shouldn't be as long as other fields,
+                        so keep two of them within the same row instead of stacking them.
                     -->        
                     <div class="row">
                         <div class="col-12 col-md-6">
-
                             <!-- Event Start Date Form Field -->
                             <div class="form-group">
                                 <label for="eventStartDateField">Start Date</label>
                                 <input type="date" 
                                        class="form-control mt-2 mb-3" id="eventStartDateField"
-                                       name="eStartDate" required>
+                                       name="eStartDate" 
+                                       required>
                             </div>
                         </div>
                         
                         <div class="col-12 col-md-6">
-
                             <!-- Event End Date Form Field -->
                             <div class="form-group">
                                 <label for="eventEndDateField">End Date</label>
                                 <input type="date" 
                                        class="form-control mt-2 mb-3" id="eventEndDateField"
-                                       name="eEndDate" required>
+                                       name="eEndDate" 
+                                       required>
                             </div> 
                         </div>
+                        
+                        <!-- DOM loads top to bottom. Let the date fields load first before applying this script. -->
+                        <script>
+                            /* 
+                                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date 
+                                ** Note, .getMonth() is zero-indexed. This means January is 0 and December is 11.
+
+                                Selector field should look like: [Year]-[Month]-[Day]
+                            */
+                            const minDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+                            document.getElementById("eventStartDateField").min = minDate
+                            document.getElementById("eventEndDateField").min   = minDate
+                        </script>  
+
                     </div>
                     
                     <!-- Event Description Form Field -->

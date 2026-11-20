@@ -14,9 +14,9 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 text-center mt-3">
+        <div class="col-12 text-center mt-3 p-5 bg-light rounded">
           <h1> <%= title %> </h1>
-          <p>Under Construction</p>
+          <p class="fs-5">Make changes to your event.</p>
         </div>
       </div>
 
@@ -38,8 +38,8 @@
               <label for="eventSelector">Type of Event</label>
               <select class="form-control custom-select mb-3" id="eventSelector" 
                       name="eType" required>
-              
-                <option hidden selected="<%= event.eventType %>"> <%= event.eventType %> </option> 
+
+                <option hidden selected="<%= event.eventType %>"> <%= event.eventType %> </option> <!-- This keeps the current option of the event, just hidden -->
                 <option value="Sports and Recreation">Sports and Recreation</option>
                 <option value="Business and Careers">Business and Careers</option>
                 <option value="Conference">Conference</option>
@@ -79,6 +79,18 @@
                           required>
                 </div> 
               </div>
+
+              <script>
+                  /* 
+                      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date 
+                      ** Note, .getMonth() is zero-indexed. This means January is 0 and December is 11.
+
+                      Selector field should look like: [Year]-[Month]-[Day]
+                  */
+                  const minDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+                  document.getElementById("eventStartDateField").min = minDate
+                  document.getElementById("eventEndDateField").min   = minDate
+              </script>              
             </div>
             
             <!-- Event Description Form Field -->
